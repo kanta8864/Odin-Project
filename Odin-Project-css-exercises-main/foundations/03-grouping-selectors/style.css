@@ -1,0 +1,12 @@
+.normal {
+    background-color: black;
+    color: white;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+button {
+    font-size: 30px;
+}
