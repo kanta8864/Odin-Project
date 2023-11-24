@@ -1,0 +1,184 @@
+body {
+    padding:0px;
+    margin:0;
+    display:flex;
+    flex-direction: column;
+}
+
+.header {
+    background-color: #1F2937;
+    display:flex;
+    justify-content: space-between;
+    color:#F9FAF8;
+    padding: 10px 10%;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.links {
+    display: flex;
+    gap: 15px;
+}
+
+.banner {
+    background-color: #1F2937;
+    color:#F9FAF8;
+    display: flex;
+    align-items: center;
+    padding: 50px 10%;
+    flex-wrap: wrap ;
+}
+
+h1{
+    margin-bottom: 0px;
+}
+
+button {
+    background-color: #3882F6;
+    border-radius: 5px;
+    color:white;
+    width: 70px;
+    height:30px;
+    margin-top:10px;
+}
+
+.banner-left {
+    display: flex;
+    flex-direction: column;
+    width: 49%;
+    padding-right:1%;
+}
+
+.banner-left div {
+    font-size:14px;
+}
+
+.banner-right {
+    display: flex;
+    justify-content: center;
+    width:49%;
+    padding-left:1%;
+}
+
+.banner-image {
+    display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: grey;
+   width: 300px;
+   height:150px;
+}
+
+.random-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom:40px;
+    padding: 30px 10%;
+}
+
+.random-title {
+    font-weight: bold;
+    font-size:30px;
+    margin-bottom: 15px;
+}
+
+.random-content-container{
+    display: flex;
+    justify-content:space-evenly;
+    gap:15px;
+}
+
+.random-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.random-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    border: 3px solid blue;
+    margin-bottom: 5px;
+}
+
+.random-subtext {
+    text-align: center;
+    width: 150px;
+}
+
+.quote-container {
+    background-color: #E5E7EB;
+    padding: 50px 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quote {
+    font-size: 36px;
+    font-style: italic; 
+    color: #1F2937;
+    font-weight: lighter;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.quote-by {
+    font-weight: bold;
+    /*The align-self CSS property overrides a grid or flex
+     item's align-items*/
+    align-self: flex-end;
+}
+
+.footer {
+    text-align: center;
+    background-color: #1F2937;
+    color:white;
+    padding:20px 0px
+}
+
+.action {
+    margin: 0;
+    padding:50px 10%;
+}
+
+.action-box {
+    display: flex;
+    background-color: #3882F6;
+    border-radius: 3px;
+    color:white;
+    padding: 20px 35px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.right-action button {
+    border: 1px solid white;
+    margin:0px;
+}
+
+.left-action {
+    width:69%;
+}
+
+.left-action h3 {
+    margin:0;
+}
+
+.left-action div {
+    font-size: 12px;
+}
+.right-action {
+    margin:0;
+    padding:0;
+    width:29%;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+}
