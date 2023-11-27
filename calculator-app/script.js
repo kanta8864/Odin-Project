@@ -11,24 +11,24 @@ function multiplication(a, b) {
 }
 
 function division(a, b) {
-    return a / b;
+    return Number((a / b).toFixed(3));
+    
 }
 
 function operate(a, b, operator) {
+    console.log(a,b,operator);
     a = Number(a);
     b = Number(b);
     switch(operator) {
         case "+":
-            addition(a, b);
-            break;
+            console.log(typeof a, typeof b)
+            return addition(a, b);
         case "-":
-            subtraction(a, b);
-            break;
+            return subtraction(a, b);
         case "*":
-            multiplication(a,b);
-            break;
-        case "/":
-            division(a,b);
+            return multiplication(a,b);
+        case "\u00f7":
+            return division(a,b);
         default:
             alert("Damn. You broke the code.")
     }
@@ -53,9 +53,116 @@ const dot = document.querySelector("#dot")
 const clear = document.querySelector("#clear")
 
 const displayDiv = document.querySelector(".display");
-const displayContent = document.querySelector(".display-content");
+let displayContent = document.querySelector(".display-content");
+
+let operandOne = "";
+let operandTwo = "";
+let operator = "";
 
 zero.addEventListener("click", () => {
-    displayContent.textContent = "0";
+    updateDisplay("0");
 })
+
+one.addEventListener("click", () => {
+    updateDisplay("1");
+})
+
+two.addEventListener("click", () => {
+    updateDisplay("2");
+})
+
+three.addEventListener("click", () => {
+    updateDisplay("3");
+})
+
+four.addEventListener("click", () => {
+    updateDisplay("4");
+})
+
+five.addEventListener("click", () => {
+    updateDisplay("5");
+})
+
+six.addEventListener("click", () => {
+    updateDisplay("6");
+})
+
+seven.addEventListener("click", () => {
+    updateDisplay("7");
+})
+
+eight.addEventListener("click", () => {
+    updateDisplay("8");
+})
+
+nine.addEventListener("click", () => {
+    updateDisplay("9");
+})
+
+add.addEventListener("click", () => {
+    updateDisplay("+");
+})
+
+subtract.addEventListener("click", () => {
+    updateDisplay("-");
+})
+
+multiply.addEventListener("click", () => {
+    updateDisplay("*");
+})
+
+divide.addEventListener("click", () => {
+    updateDisplay("\u00f7");
+})
+
+equal.addEventListener("click", () => {
+    updateDisplay("=");
+})
+
+clear.addEventListener("click", () => {
+    operandOne = 0;
+    operandTwo = 0;
+    operator = 0;
+    displayContent.textContent = "";
+})
+
+dot.addEventListener("click", () => {
+    updateDisplay(".");
+})
+
+
+function updateDisplay(str) {
+    if(isNaN(str)) {
+        if(str == ".") {
+            if(operator == "") operandOne += ".";
+            else operandTwo += "."
+            console.log(displayContent.textContent)
+            displayContent.textContent +=  `.`;
+        } else if(operator == "") {
+            operator = str;
+            displayContent.textContent +=  ` ${str} `;
+        }  else {
+            // then we need to do computation of the first operation
+            console.log(operandOne, operandTwo, operator);
+            if(operandTwo == "0" && operator=="\u00f7") {
+                alert("Cannot divide by zero");
+                operandTwo = "";
+                displayContent.textContent = `${operandOne} ${operator} `;
+            }
+            else {
+                let result = operate(operandOne, operandTwo, operator);
+                operandOne = result;
+                operator = str == "=" ? "" : str;
+                operandTwo = "";
+                if(str != "=") displayContent.textContent = `${result} ${str} `;
+                else displayContent.textContent = `${result}`;
+            }
+        }
+    } else {
+        if(operator == "") operandOne += str;
+        else operandTwo += str;
+        displayContent.textContent +=  `${str}`;
+    }
+}
+
 
