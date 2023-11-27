@@ -16,12 +16,10 @@ function division(a, b) {
 }
 
 function operate(a, b, operator) {
-    console.log(a,b,operator);
     a = Number(a);
     b = Number(b);
     switch(operator) {
         case "+":
-            console.log(typeof a, typeof b)
             return addition(a, b);
         case "-":
             return subtraction(a, b);
@@ -51,6 +49,7 @@ const divide = document.querySelector("#divide")
 const equal = document.querySelector("#equal")
 const dot = document.querySelector("#dot")
 const clear = document.querySelector("#clear")
+const backspace = document.querySelector("#backspace")
 
 const displayDiv = document.querySelector(".display");
 let displayContent = document.querySelector(".display-content");
@@ -116,19 +115,51 @@ divide.addEventListener("click", () => {
 })
 
 equal.addEventListener("click", () => {
-    updateDisplay("=");
+    equalFuntion();
 })
 
+function equalFuntion() {
+    if(operator == "" || operandOne == "" || operandTwo == ""){
+        alert("You have not indicated enough operators/operands");
+    } else {
+        updateDisplay("=");
+    }
+}
+
 clear.addEventListener("click", () => {
-    operandOne = 0;
-    operandTwo = 0;
-    operator = 0;
-    displayContent.textContent = "";
+    clearFunction();
 })
+
+function clearFunction() {
+    operandOne = "";
+    operandTwo = "";
+    operator = "";
+    displayContent.textContent = "";
+}
 
 dot.addEventListener("click", () => {
     updateDisplay(".");
 })
+
+backspace.addEventListener("click", () => {
+    backspaceFunction();
+})
+
+function backspaceFunction() {
+    if(operator == "") {
+        operandOne = operandOne.slice(0, -1);
+        console.log(operandOne);
+        displayContent.textContent = operandOne;
+    }
+    if(operator != "" && operandTwo == "") {
+        operator = "";
+        displayContent.textContent =  operandOne;
+    }
+    else {
+        operandTwo = operandTwo.slice(0, -1);
+        displayContent.textContent =  `${operandOne} ${operator} ${operandTwo}`;
+    }
+}
 
 
 function updateDisplay(str) {
@@ -136,21 +167,19 @@ function updateDisplay(str) {
         if(str == ".") {
             if(operator == "") operandOne += ".";
             else operandTwo += "."
-            console.log(displayContent.textContent)
             displayContent.textContent +=  `.`;
         } else if(operator == "") {
             operator = str;
             displayContent.textContent +=  ` ${str} `;
         }  else {
             // then we need to do computation of the first operation
-            console.log(operandOne, operandTwo, operator);
             if(operandTwo == "0" && operator=="\u00f7") {
                 alert("Cannot divide by zero");
                 operandTwo = "";
                 displayContent.textContent = `${operandOne} ${operator} `;
             }
             else {
-                let result = operate(operandOne, operandTwo, operator);
+                let result = String(operate(operandOne, operandTwo, operator));
                 operandOne = result;
                 operator = str == "=" ? "" : str;
                 operandTwo = "";
@@ -159,10 +188,76 @@ function updateDisplay(str) {
             }
         }
     } else {
-        if(operator == "") operandOne += str;
-        else operandTwo += str;
-        displayContent.textContent +=  `${str}`;
+        if(operator == "") {
+            operandOne += str;
+            displayContent.textContent = operandOne;
+        }
+        else {
+            operandTwo += str;
+            displayContent.textContent += `${str}`;
+        } 
     }
 }
+
+window.addEventListener("keydown", (e) => {
+    switch(e.key.toLowerCase()){
+        case "1": 
+            updateDisplay("1");
+            break;
+        case "2":
+            updateDisplay("2");
+            break;
+        case "3": 
+            updateDisplay("3");
+            break;
+        case "4":
+            updateDisplay("4");
+            break;
+        case "5": 
+            updateDisplay("5");
+            break;
+        case "6":
+            updateDisplay("6");
+            break;
+        case "7": 
+            updateDisplay("7");
+            break;
+        case "8":
+            updateDisplay("8");
+            break;
+        case "9": 
+            updateDisplay("9");
+            break;
+        case "0":
+            updateDisplay("0");
+            break;
+        case "+": 
+            updateDisplay("+");
+            break;
+        case "-":
+            updateDisplay("-");
+            break;
+        case "*": 
+            updateDisplay("*");
+            break;
+        case "/":
+            updateDisplay("\u00f7");
+            break;
+        case "delete":
+            // this is fn + backspace in my mac japanese keyboard
+            clearFunction();
+            break;
+        case "backspace": 
+            backspaceFunction();
+            break;
+        case ".":
+            updateDisplay(".");
+            break;
+        case "enter":
+            equalFuntion();f
+            break;
+        default:
+    }
+})
 
 

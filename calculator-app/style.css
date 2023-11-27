@@ -17,10 +17,12 @@
     margin:20px 0px;
     background-color: #F5F4F2;
     position:relative;
+    text-wrap: wrap;
 }
 
 .display-content {
-    font-size:60px;
+    text-wrap: wrap;
+    font-size:40px;
     /* if an absolute positioned element has no positioned ancestors, it uses the document body */
     position: absolute;
     bottom:0px;
